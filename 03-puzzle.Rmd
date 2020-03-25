@@ -1,0 +1,78 @@
+# 解謎 {#puzzle}
+
+建立新的謎題:
+
+```{r}
+initiate_chessboard()
+```
+
+棋盤上有座標提示，讓布局更容易。
+
+透過 `add_one()` 擺放棋子，可以逐個擺放，或是一次放置多個:
+
+```{r}
+pname <- c("兵", "卒", "士", "仕", "相", "炮")
+px <- c(3,4,5,6,2,6)
+py <- c(6,3,2,8,9,6)
+
+initiate_chessboard() %>% 
+  add_one("馬", 1, 1) %>% 
+  add_one(pname, px, py)
+```
+
+`add_one()` 只會告知布局的紀錄，如果對於座標不熟悉，或是想立刻查看布局的話，可以使用 `add_one_pro()`:
+
+```{r}
+initiate_chessboard() %>% 
+  add_one_pro("馬", 1, 1)
+```
+
+```{r, fig.keep='last'}
+initiate_chessboard() %>% 
+  add_one_pro("馬", 1, 1) %>% 
+  add_one_pro(pname, px, py)
+```
+
+`add_one_pro()` 會輸出每一步放置的盤面，在檢查沒問題後，可以再換回 `add_one()`。
+
+在檢查的時候，可以使用 `show_current()` 或是 `show_stream()`。`show_current()` 會秀出盤面。`show_stream()` 和 `add_one_pro()` 一樣會秀出每一步盤面，但不會有座標提示。
+
+使用 `show_current()`:
+
+```{r}
+initiate_chessboard() %>% 
+  add_one("馬", 1, 1) %>% 
+  add_one(pname, px, py) %>% 
+  show_current()
+```
+
+使用 `show_stream()` 可以穿插在 `add_one()` 和 `add_one_pro()` 之間:
+
+```{r}
+initiate_chessboard() %>% 
+  add_one("馬", 1, 1) %>% 
+  show_stream() %>% 
+  add_one_pro("帥", 5, 1) %>% 
+  add_one("兵", 7, 1) %>% 
+  show_stream()
+```
+
+在布局完成後，`animate_chessboard()` 秀一段謎題的動畫:
+
+```{r}
+initiate_chessboard() %>% 
+  add_one("馬", 1, 1) %>% 
+  add_one(pname, px, py) %>% 
+  animate_chessboard()
+```
+
+可以調整播放的速度，以及是否重新播放:
+
+```{r}
+initiate_chessboard() %>% 
+  add_one("馬", 1, 1) %>% 
+  add_one(pname, px, py) %>% 
+  animate_chessboard(speed = 0.5, loop = TRUE)
+```
+
+
