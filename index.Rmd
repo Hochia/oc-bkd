@@ -15,15 +15,14 @@ description: "A book about playing Chinese chess with orientchessr, an R package
 # 開始
 
 ```{r, include=FALSE}
+knitr::opts_chunk$set(comment = "#>")
 library(tidyverse)
+library(orientchessr)
 ```
 
 安裝本書使用的 R package:
 
 ```{r, eval=FALSE}
 devtools::install_github("Hochia/orientchessr")
-```
-
-```{r}
 library(orientchessr)
 ```

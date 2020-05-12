@@ -1,16 +1,39 @@
 # 對戰 {#player}
 
+## 範例
+
+```{r, eval=FALSE}
+race_start() %>% 
+  player(c(2, 1), c(3, 3)) %>% 
+  player(c(8, 8), c(5, 8)) %>% 
+  player(c(2, 3), c(2, 10)) %>% 
+  replay()
+```
+
+## 說明
+
 開啟新的棋局:
 
-```{r}
+```{r, eval=FALSE}
 race_start()
+```
+
+```{r, echo=FALSE}
+p <- race_start()
+p[[3]]
 ```
 
 玩家透過 `player()` 輪流輸入移動的棋子，比如 `c(2, 1)` 為紅方傌目前的位置，`c(3, 3)` 為紅方傌移動後的位置。且可以立即看到當前玩家移動的紀錄，棋子的座標位置與存活狀況，以及當前的盤勢:
 
-```{r}
+```{r, eval=FALSE}
 race_start() %>% 
   player(c(2, 1), c(3, 3))
+```
+
+```{r, echo=FALSE}
+p <- race_start() %>% 
+  player(c(2, 1), c(3, 3))
+p[[3]]
 ```
 
 在對戰途中或是對戰終了，能透過 `replay()` 播放對戰的棋局:
